@@ -1,0 +1,17 @@
+name: Sync Avatars to Public Repo
+on: [push]  # O manual: workflow_dispatch
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4  # Checkout repo privado
+    - name: Sync to Public Repo
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}  # Token con permisos en ambos repos
+      with:
+        source-folder: 'avatars/'  # Carpeta de avatares en privado
+        destination: github.com/KiwiChat/public-avatars  # Repo público
+        user-email: kiwichat@email.com
+        user-name: KiwiChat
+        commit-message: Sync avatars
