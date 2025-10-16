@@ -1,0 +1,28 @@
+name: Upload Avatar
+on:
+  workflow_dispatch:
+    inputs:
+      file-path:
+        description: 'Calea fișierului local de încărcat'
+        required: true
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install @octokit/rest
+
+      - name: Upload Avatar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/upload-avatar.js ${{ github.event.inputs.file-path }}
