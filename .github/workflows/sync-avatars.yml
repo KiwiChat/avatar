@@ -11,7 +11,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}  # Token con permisos en ambos repos
       with:
         source-folder: 'avatars/'  # Carpeta de avatares en privado
-        destination: github.com/KiwiChat/public-avatars  # Repo público
+        destination: github.com/KiwiChat/public-avatars/user  # Repo público
         user-email: kiwichat@email.com
         user-name: KiwiChat
         commit-message: Sync avatars
